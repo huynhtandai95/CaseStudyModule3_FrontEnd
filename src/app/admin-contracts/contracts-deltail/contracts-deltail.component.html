@@ -1,0 +1,82 @@
+<!-- MAIN -->
+<!-- Button Top Right-->
+<div class="row">
+    <div class="col-md-8">
+
+    </div>
+    <div class="col-md-4">
+        <div class="btn-group float-right mt-2" role="group">
+            <button type="button" [routerLink]="['/admin/manager/contracts']" routerLinkActive="router-link-active" class="btn btn-success">
+                <i class="fas fa-arrow-left"></i>
+                    Quay Lại
+                </button>
+        </div>
+    </div>
+</div>
+
+<!-- Button Top Right End-->
+<!-- Content -->
+<div class="row">
+    <div class="col m-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <h3 class="card-title pl-3"> Chi Tiết Hợp Đồng</h3>
+                    <div class="col">
+                        <form class="form-inline float-right">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+                <div class="row">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+
+                                <th>Mã Hợp Đồng</th>
+                                <th>Giá Dịch Vụ</th>
+
+                                <th>Dịch Vụ Đi Kèm </th>
+
+                                <th>Đơn Giá</th>
+                                <th>Số lượng</th>
+                                <th>Tổng Tiền Tất cả Dịch Vụ</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>{{contractsDeltails.contracts_id}}</td>
+                                <td>{{contractsDeltails.TotalPrice_Contract | currency:"VND"}}</td>
+                                <td>{{contractsDeltails.Other_Service}}</td>
+                                <td>{{contractsDeltails.Price | currency:"VND"}}</td>
+                                <td>{{contractsDeltails.Amount}}</td>
+                                <td>{{contractsDeltails.TotalPrice_Contract + (contractsDeltails.Amount * contractsDeltails.Price) | currency:"VND"}}</td>
+
+                                <td></td>
+
+
+
+                        </tbody>
+                    </table>
+                    <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+
+            </div>
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+
+<!-- Content END-->
+<!-- Main Col END -->

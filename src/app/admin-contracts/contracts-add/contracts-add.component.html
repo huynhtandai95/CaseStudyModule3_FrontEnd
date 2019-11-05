@@ -1,0 +1,83 @@
+<!-- general form elements -->
+<div class="row">
+    <div class="col">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Thêm mới Hợp Đồng</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form role="form" [formGroup]="formContracts" (ngSubmit)="onClickAdd()">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="">Dịch Vụ Sử Dụng</label>
+                        <select id="" class="form-control" formControlName="Services_id">
+                                <option *ngFor="let service of services" value="{{service.code}}">{{service.NameService}}
+                                </option>
+                            </select>
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="">Khách Hàng Đặt Thuê</label>
+                        <select id="" class="form-control" formControlName="Users_id">
+                            <option *ngFor="let customer of customers" value="{{customer.code}}">{{customer.code}}
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Nhân Viên Thực Hiện</label>
+                        <select id="" class="form-control" formControlName="Employees_id">
+
+                            <option *ngFor="let employee of employees" value="{{employee.code}}">{{employee.code}}
+                            </option>
+
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <label for=" ">Ngày Bắt Đầu</label>
+
+                        <div>
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="picker1" [min]="nowDate" placeholder="dd/mm/yy" formControlName="DateStart">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class=" form-group ">
+                        <label for=" ">Ngày Kết Thúc</label>
+
+                        <div>
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="picker2" [min]="dateStart" placeholder="dd/mm/yy" formControlName="DateEnd">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for=" ">Tổng Tiền</label>
+                        <input type="text " class="form-control " id=" " formControlName="TotalPrice">
+                    </div>
+
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <div class="row d-flex">
+                        <button [disabled]="formContracts.invalid" type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-primary ml-auto" [routerLink]="['/admin/manager/employees']" routerLinkActive="router-link-active"> Quay
+                            Lại</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /.card -->

@@ -1,0 +1,81 @@
+<!-- general form elements -->
+<div class="row">
+    <div class="col">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Thêm mới Nhân Viên</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form role="form" [formGroup]="formEmployee" (ngSubmit)="onClickAdd()">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="">Mã Nhân Viên</label>
+                        <input type="text" class="form-control" id="" placeholder="" formControlName="code">
+                        <span class="badge badge-danger" *ngIf="formEmployee.controls.code.dirty && formEmployee.controls.code.errors?.required"> Không được để trống</span>
+                        <span class="badge badge-danger" *ngIf="formEmployee.controls.code.dirty && formEmployee.controls.code.errors?.pattern"> Mã Nhân Viên có dạng NV-XXXX (X là số 0-9)</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Họ Tên</label>
+                        <input type="text" class="form-control" placeholder="" formControlName="name">
+                        <span class="badge badge-danger" *ngIf="formEmployee.controls.name.dirty && formEmployee.controls.name.errors?.required"> Không được để trống</span>
+                        <span class="badge badge-danger" *ngIf="formEmployee.controls.name.dirty && formEmployee.controls.name.errors?.minlength"> Tối thiểu 4 ký tự</span>
+                        <span class="badge badge-danger" *ngIf="formEmployee.controls.name.dirty && formEmployee.controls.name.errors?.pattern"> Tên chỉ bao gồm ký tự</span>
+                    </div>
+                    <div class=" form-group ">
+                        <label for=" ">Ngày Sinh</label>
+                        <div>
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="picker" [max]="nowDate" placeholder="mm/dd/yy" formControlName="birthday">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <span class="badge badge-danger" *ngIf="formEmployee.controls.code.birthday && formEmployee.controls.birthday.errors?.required"> Không được để trống</span>
+                    </div>
+                    <div class="form-group ">
+                        <label for=" ">Số Điện Thoại</label>
+                        <input type="text " class="form-control " id=" " formControlName="phone">
+                        <span class="badge badge-danger" *ngIf="formEmployee.controls.phone.dirty && formEmployee.controls.phone.errors?.required"> Không được để trống</span>
+                        <span class="badge badge-danger" *ngIf="formEmployee.controls.phone.dirty && formEmployee.controls.phone.errors?.pattern"> Số điện thoại phải đúng định dạng</span>
+                    </div>
+                    <div class=" form-group ">
+                        <label for=" ">Số CMND</label>
+                        <input type="text " class="form-control " id=" " formControlName="cmnd">
+                        <span class="badge badge-danger" *ngIf="formEmployee.controls.cmnd.dirty && formEmployee.controls.cmnd.errors?.required"> Không được để trống</span>
+                        <span class="badge badge-danger" *ngIf="formEmployee.controls.cmnd.dirty && formEmployee.controls.cmnd.errors?.pattern">CMND phải đúng định dạng ( gồm 9 hoặc 12 chữ)</span>
+                    </div>
+                    <div class="form-group ">
+                        <label for=" ">Email</label>
+                        <input type="text " class="form-control " id=" " formControlName="email">
+                        <span class="badge badge-danger" *ngIf="formEmployee.controls.email.dirty && formEmployee.controls.email.errors?.required"> Không được để trống</span>
+                        <span class="badge badge-danger" *ngIf="formEmployee.controls.email.dirty && formEmployee.controls.email.errors?.pattern"> Email chưa đúng định dạng)</span>
+                    </div>
+                    <div class=" form-group ">
+                        <label for=" ">Địa chỉ</label>
+                        <input type="text " class="form-control " id=" " formControlName="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Vị Trí</label>
+                        <select id="" class="form-control" formControlName="position">
+                          <option value="Tập Sự">Tập Sự</option>
+                          <option value="Quản Lý">Quản Lý</option>
+                        </select>
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <div class="row d-flex">
+                        <button [disabled]="formEmployee.invalid" type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-primary ml-auto" [routerLink]="['/admin/manager/employees']" routerLinkActive="router-link-active"> Quay
+                                Lại</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /.card -->

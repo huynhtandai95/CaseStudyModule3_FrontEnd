@@ -1,0 +1,87 @@
+<!-- MAIN -->
+<!-- Button Top Right-->
+<div class="row">
+    <div class="col-md-8">
+
+    </div>
+    <div class="col-md-4">
+        <div class="btn-group float-right mt-2" role="group">
+            <button type="button" [routerLink]="['/admin/manager/services/add']" routerLinkActive="router-link-active" class="btn btn-success">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    Thêm mới
+                </button>
+        </div>
+    </div>
+</div>
+
+<!-- Button Top Right End-->
+<!-- Content -->
+<div class="row">
+    <div class="col m-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <h3 class="card-title pl-3"> Danh Sách dịch vụ</h3>
+                    <div class="col">
+                        <form class="form-inline float-right">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" [(ngModel)]="searchText">
+                            <button class=" btn btn-outline-success " type="submit ">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body ">
+                <div class="row ">
+                    <table class="table table-striped ">
+                        <thead class="thead-dark ">
+                            <tr>
+                                <th style="width: 10px ">#</th>
+                                <th>Dịch Vụ</th>
+                                <th>Loại Dịch Vụ</th>
+                                <th>Mã Dịch Vụ</th>
+                                <th>Diện Tích</th>
+                                <th>Số Người Tối Đa</th>
+                                <th>Tiêu Chuẩn</th>
+                                <th>Số tầng</th>
+                                <th>Diện tích hồ bơi</th>
+                                <th>Giá (VND)</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let service of services | filter:searchText | paginate: {itemsPerPage: 5, currentPage: p }; let i=index ">
+                                <td>{{i+1}}</td>
+                                <td>{{service.NameService}}</td>
+                                <td>{{service.TypeService}}</td>
+                                <td>{{service.code}}</td>
+                                <td>{{service.AreaUsed}}</td>
+                                <td>{{service.MaxPeople}}</td>
+                                <td>{{service.Standard}}</td>
+                                <td>{{service.NumberFloors}}</td>
+                                <td>{{service.AreaPool}}</td>
+                                <td>{{service.Price | currency:"VND"}}</td>
+                                <td>
+                                    <a> <span [routerLink]="[ '/admin/manager/services/', service.id , 'edit'] " routerLinkActive="router-link-active " class="badge badge-primary ">Sửa</span></a>
+                                    <a> <span class="badge badge-danger " (click)="onDeleteService(service.id) ">Xóa</span></a>
+
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="p=$event "></pagination-controls>
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix ">
+
+            </div>
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+
+<!-- Content END-->
+<!-- Main Col END -->
